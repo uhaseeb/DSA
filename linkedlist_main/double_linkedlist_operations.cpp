@@ -68,7 +68,50 @@ int add_node_at_end(Node*&head, int value)
 		}
 	}
 
+	int remove_node_from_end(Node*&head)							// 	1	2	3	4(temp)
+{
+	Node* temp = head;
+	
+	while(temp->next!=NULL)
+	{
+		temp = temp->next;
+	}
+	temp->prev->next = NULL;
+	temp = NULL;
+}
 
+
+	int remove_node_from_start(Node*&head)
+	{
+		Node* temp = head;
+		
+		if(head->next == NULL)
+		{
+			head = NULL;
+		}
+		else{
+			head = head->next;
+		}
+	}
+	
+	int remove_node_from_random_pos(Node*&head, int pos)
+	{
+			Node* temp = head;
+		
+			if(head->next == NULL)
+		{
+				head = NULL;
+				cout<<"head is null";
+		}
+		else{
+			for(int i=1;i<pos;i++)									//  1(temp)		2	3	4		pos=3
+			{			
+				temp = temp->next;
+			}
+			temp->prev->next = temp->next;
+			temp->next->prev = temp->prev;
+		}
+	}
 int main()
 {
 	struct Node* head;
@@ -90,7 +133,10 @@ int main()
 	
 	//add_node_at_end(head, 55);
 //	add_node_at_start(head, 10);
-	add_node_at_random_pos(head,3,23);
+//	add_node_at_random_pos(head,3,23);
+//	remove_node_from_end(head);
+//	remove_node_from_start(head);
+//	remove_node_from_random_pos(head,2);
 	print(head);
 }
 

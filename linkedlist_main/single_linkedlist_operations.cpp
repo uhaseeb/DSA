@@ -1,5 +1,8 @@
 #include<iostream>
+#include<stdio.h>
+#include<stdlib.h>
 using namespace std;
+
 struct Node{
 	int data;
 	struct Node* next;
@@ -13,6 +16,61 @@ int print(Node* n)
 		n=n->next;
 	}
 }
+int insert_at_start(Node**head)
+{
+	struct Node* newnode= new Node();
+	newnode->data=10;
+	newnode->next = *head;
+	*head = newnode;
+	
+}
+int insert_at_end(Node**head)
+{
+	struct Node* newnode= new Node();
+	newnode->data=40;
+	newnode->next=NULL;
+	struct Node* temp;
+	temp= *head;
+	if(temp==NULL)
+	{
+		newnode = temp;
+	}
+	else{
+		while(temp->next!=NULL)
+		{
+			temp=temp->next;
+		}
+		temp->next=newnode;
+		
+	}
+}
+int insert_after(Node* prev)
+{
+	struct Node* newnode = new Node();
+	
+	if(prev==NULL)
+	{
+		cout<<"Previous cannot be null";
+	}
+	else{
+		newnode->next= prev->next;
+		prev->next= newnode;
+	}
+}
+int insert_before(Node* Next)
+{
+	struct Node* newnode = new Node();
+	newnode->data=6;
+	if(Next==NULL)
+	{
+		cout<<"Next cannot be null";
+	}
+	else{
+		newnode->next = Next->next;
+		Next->next = newnode;
+	}
+}
+
 	int delete_from_start(Node*&head)
 	{
 		Node* temp = head;
@@ -72,14 +130,13 @@ int print(Node* n)
 				
 			}
 				temp->next = temp->next->next;	
-				temp->next = NULL;
+				temp = NULL;
 		//	p->next = q->next;
 		//	q = NULL;
 				
 						
 		}
 	}
-
 
 int main()
 {
@@ -97,11 +154,18 @@ int main()
 	third->next=fourth;
 	fourth->data=4;
 	fourth->next=NULL;
+	
 	head = first;
 	
-	//delete_from_start(head);
-	delete_from_end(head);
-	//delete_from_pos(head, 3);
-	print(head);
+//	insert_at_start(&head);
 	
+//	insert_at_end(&head);
+//	insert_after(first);	
+	//insert_before(second);
+	
+//	delete_from_end(head);
+//	delete_from_start(head);
+//	delete_from_pos(head,2); 
+	print(head);
 }
+
